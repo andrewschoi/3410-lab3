@@ -3,7 +3,11 @@
 #include <MKL46Z4.h>
 
 struct process_state {
-
+  unsigned int * sp;
+  unsigned int * original_sp;
+  process_t * next_process_ptr;
+  int size;
+  int is_blocked;
 }
 
 int process_create(void *f(void), n) {
