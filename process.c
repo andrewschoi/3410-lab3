@@ -7,7 +7,7 @@ struct process_state {
   unsigned int * original_sp;
   process_t * next_process_ptr;
   int size;
-  int is_blocked;
+  
 }
 
 struct process_state* current_process = NULL;
@@ -83,10 +83,7 @@ unsigned int * process_select(unsigned int * cursp) {
     }
   } else {
     current_process -> sp = cursp;
-    if(current_process -> is_blocked == 0) {
-      if (process_queue != NULL) enqueue(current_process);
-      else process_queue = current_process;
-    }
+    process_queue = current_process;
   }
 
   process_t* new_currentprocess = dequeue();
