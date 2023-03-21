@@ -13,7 +13,10 @@ void p1(void) {
 void p2(void) {
 	delay();
 	LEDGreen_Toggle();
-	p2();
+	if (process_create(p2, 32) < 0) {
+	    return;
+	  }
+	process_start();
 }
 
 int main(void) {
@@ -27,7 +30,6 @@ int main(void) {
     return -1;
   }
 
-  // Expectation: Process 1 and 2 will occurs at the same time. After process 1 finishes, process 2 will continue forever
   process_start ();
 
 
